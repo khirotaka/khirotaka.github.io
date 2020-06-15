@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>introduction on khirotaka</title>
-    <link>http://example.org/tags/introduction/</link>
+    <link>https://khirotaka.github.io/tags/introduction/</link>
     <description>Recent content in introduction on khirotaka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Mon, 15 Jun 2020 20:40:11 +0900</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/introduction/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://khirotaka.github.io/tags/introduction/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hello World@khirotaka.github.io</title>
-      <link>http://example.org/2020/hello/</link>
+      <link>https://khirotaka.github.io/2020/hello/</link>
       <pubDate>Mon, 15 Jun 2020 20:40:11 +0900</pubDate>
       
-      <guid>http://example.org/2020/hello/</guid>
+      <guid>https://khirotaka.github.io/2020/hello/</guid>
       <description>はじめに HugoとGitHub Pagesを使って生成したポートフォリオ兼ブログみたいなページ。
 三日坊主のプログラミング日誌 から移行するつもりはないので、 ここと向こう両方使っていくつもり</description>
     </item>
