@@ -63,4 +63,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: http://example.org/sitemap.xml
+Sitemap: http://khirotaka.github.io/sitemap.xml
