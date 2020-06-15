@@ -10,9 +10,9 @@
   
   
   
+  <link rel="prev" href="https://khirotaka.github.io/2020/hello/" />
   
-  <link rel="next" href="https://khirotaka.github.io/2020/how_to_deploy/" />
-  <link rel="canonical" href="https://khirotaka.github.io/2020/hello/" />
+  <link rel="canonical" href="https://khirotaka.github.io/2020/how_to_deploy/" />
   <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -26,10 +26,10 @@
   <title>
        
        
-           Hello World@khirotaka.github.io | khirotaka
+           Deploying to GitHub Pages using Hugo &amp; Shell script. | khirotaka
        
   </title>
-  <meta name="title" content="Hello World@khirotaka.github.io | khirotaka">
+  <meta name="title" content="Deploying to GitHub Pages using Hugo &amp; Shell script. | khirotaka">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -37,26 +37,34 @@
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Hello World@khirotaka.github.io"/>
-<meta name="twitter:description" content="はじめに HugoとGitHub Pagesを使って生成したポートフォリオ兼ブログみたいなページ。
-三日坊主のプログラミング日誌 から移行するつもりはないので、 ここと向こう両方使っていくつもり"/>
+<meta name="twitter:title" content="Deploying to GitHub Pages using Hugo &amp; Shell script."/>
+<meta name="twitter:description" content="Introduction このページはHugo を使ってMarkdownを元にHTMLを生成している。
+Hugoのテーマ設定だとかは検索すると無限に出てくる既存の記事を参考にしてもらい、 「記事の作成方法」と、「確認」、「デプロイ」の手順をメモっておく。
+Generate an empty blog post まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンを叩く必要がある。
+hugo new posts/~~~~~.md このようにすれば、content/ディレクトリ直下に ~~~~~.md ファイルが生成される。 あとは、普通にMarkdownを書けばいい。
+Validation ローカルマシン上で試しにWebサイトを建てるには、以下のようにする。
+hugo server こうすれば、先に用意した記事をちゃんとサイトの形にしてくれる。
+ただし、 draft: true にしている記事は生成されないので、 これも生成したい場合は、
+hugo server -D とする。
+Deplying 次のshellスクリプトをリポジトリルートに用意する。 後は実行権限を与えて動かせば、OK
+#!/bin/bash hugo cp -r public/* ../XXXXXX.github.io "/>
 
   <script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "headline": "Hello World@khirotaka.github.io",
+  "headline": "Deploying to GitHub Pages using Hugo \u0026 Shell script.",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https:\/\/khirotaka.github.io\/2020\/hello\/"
+    "@id": "https:\/\/khirotaka.github.io\/2020\/how_to_deploy\/"
   },
   
   "genre": "posts",
-  "keywords": "introduction",
-  "wordcount":  6 ,
-  "url": "https:\/\/khirotaka.github.io\/2020\/hello\/",
-  "datePublished": "2020-06-15T20:40:11\u002b09:00",
-  "dateModified": "2020-06-15T20:40:11\u002b09:00",
+  "keywords": "hugo, usage",
+  "wordcount":  41 ,
+  "url": "https:\/\/khirotaka.github.io\/2020\/how_to_deploy\/",
+  "datePublished": "2020-06-16T00:03:27\u002b09:00",
+  "dateModified": "2020-06-16T00:03:27\u002b09:00",
   
   
   
@@ -116,11 +124,11 @@
       		
 <article class="post-warp">
     <header class="post-header">
-        <h1 class="post-title">Hello World@khirotaka.github.io</h1>
+        <h1 class="post-title">Deploying to GitHub Pages using Hugo &amp; Shell script.</h1>
         <div class="post-meta">
             Written by <a href="https://khirotaka.github.io" rel="author">Hirotaka Kawashima</a> with ♥ 
                 <span class="post-time">
-                    on <time datetime=2020-06-15 >15 June 2020</time>
+                    on <time datetime=2020-06-16 >16 June 2020</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
@@ -148,11 +156,30 @@
           
           
 
-          <h1 id="はじめに">はじめに</h1>
-<p>HugoとGitHub Pagesを使って生成したポートフォリオ兼ブログみたいなページ。<br>
-<a href="http://pgm-diary.hateblo.jp">三日坊主のプログラミング日誌</a> から移行するつもりはないので、
-ここと向こう両方使っていくつもり</p>
-
+          <h1 id="introduction">Introduction</h1>
+<p>このページは<a href="https://gohugo.io/">Hugo</a> を使ってMarkdownを元にHTMLを生成している。<br>
+Hugoのテーマ設定だとかは検索すると無限に出てくる既存の記事を参考にしてもらい、
+「記事の作成方法」と、「確認」、「デプロイ」の手順をメモっておく。</p>
+<h2 id="generate-an-empty-blog-post">Generate an empty blog post</h2>
+<p>まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンを叩く必要がある。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo new posts/~~~~~.md
+</code></pre></div><p>このようにすれば、<code>content/</code>ディレクトリ直下に <code>~~~~~.md</code> ファイルが生成される。
+あとは、普通にMarkdownを書けばいい。</p>
+<h2 id="validation">Validation</h2>
+<p>ローカルマシン上で試しにWebサイトを建てるには、以下のようにする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo server
+</code></pre></div><p>こうすれば、先に用意した記事をちゃんとサイトの形にしてくれる。<br>
+ただし、 <code>draft: true</code> にしている記事は生成されないので、
+これも生成したい場合は、</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo server -D
+</code></pre></div><p>とする。</p>
+<h2 id="deplying">Deplying</h2>
+<p>次のshellスクリプトをリポジトリルートに用意する。
+後は実行権限を与えて動かせば、OK</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>hugo
+cp -r public/* ../XXXXXX.github.io
+</code></pre></div>
     </div>
 
     <div class="post-copyright">
@@ -165,7 +192,7 @@
            
             <p class="copyright-item">
                     <span>Words:</span>
-                   <span>6</span>
+                   <span>41</span>
             </p>
             
             <p class="copyright-item">
@@ -181,8 +208,11 @@
             <section>
             <i class="iconfont icon-icon-tag"></i>Tag: 
             
-            <span class="tag"><a href="https://khirotaka.github.io/tags/introduction/">
-                    #introduction</a></span>
+            <span class="tag"><a href="https://khirotaka.github.io/tags/hugo/">
+                    #hugo</a></span>
+            
+            <span class="tag"><a href="https://khirotaka.github.io/tags/usage/">
+                    #usage</a></span>
             
             </section>
         
@@ -193,9 +223,9 @@
     </div>
 
     <div class="post-nav">
-         
         
-        <a href="https://khirotaka.github.io/2020/how_to_deploy/" class="next" rel="next" title="Deploying to GitHub Pages using Hugo &amp; Shell script.">Deploying to GitHub Pages using Hugo &amp; Shell script.&nbsp;<i class="iconfont icon-xiaojiantou"></i></a>
+        <a href="https://khirotaka.github.io/2020/hello/" class="prev" rel="prev" title="Hello World@khirotaka.github.io"><i class="iconfont icon-dajiantou"></i>&nbsp;Hello World@khirotaka.github.io</a>
+         
         
     </div>
 

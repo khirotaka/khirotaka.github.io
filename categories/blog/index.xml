@@ -6,10 +6,28 @@
     <description>Recent content in blog on khirotaka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 15 Jun 2020 20:40:11 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 00:03:27 +0900</lastBuildDate>
     
 	<atom:link href="https://khirotaka.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deploying to GitHub Pages using Hugo &amp; Shell script.</title>
+      <link>https://khirotaka.github.io/2020/how_to_deploy/</link>
+      <pubDate>Tue, 16 Jun 2020 00:03:27 +0900</pubDate>
+      
+      <guid>https://khirotaka.github.io/2020/how_to_deploy/</guid>
+      <description>Introduction このページはHugo を使ってMarkdownを元にHTMLを生成している。
+Hugoのテーマ設定だとかは検索すると無限に出てくる既存の記事を参考にしてもらい、 「記事の作成方法」と、「確認」、「デプロイ」の手順をメモっておく。
+Generate an empty blog post まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンを叩く必要がある。
+hugo new posts/~~~~~.md このようにすれば、content/ディレクトリ直下に ~~~~~.md ファイルが生成される。 あとは、普通にMarkdownを書けばいい。
+Validation ローカルマシン上で試しにWebサイトを建てるには、以下のようにする。
+hugo server こうすれば、先に用意した記事をちゃんとサイトの形にしてくれる。
+ただし、 draft: true にしている記事は生成されないので、 これも生成したい場合は、
+hugo server -D とする。
+Deplying 次のshellスクリプトをリポジトリルートに用意する。 後は実行権限を与えて動かせば、OK
+#!/bin/bash hugo cp -r public/* ../XXXXXX.github.io </description>
+    </item>
     
     <item>
       <title>Hello World@khirotaka.github.io</title>

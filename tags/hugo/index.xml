@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on khirotaka</title>
-    <link>https://khirotaka.github.io/posts/</link>
-    <description>Recent content in Posts on khirotaka</description>
+    <title>hugo on khirotaka</title>
+    <link>https://khirotaka.github.io/tags/hugo/</link>
+    <description>Recent content in hugo on khirotaka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Tue, 16 Jun 2020 00:03:27 +0900</lastBuildDate>
     
-	<atom:link href="https://khirotaka.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://khirotaka.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -27,16 +27,6 @@ hugo server こうすれば、先に用意した記事をちゃんとサイト�
 hugo server -D とする。
 Deplying 次のshellスクリプトをリポジトリルートに用意する。 後は実行権限を与えて動かせば、OK
 #!/bin/bash hugo cp -r public/* ../XXXXXX.github.io </description>
-    </item>
-    
-    <item>
-      <title>Hello World@khirotaka.github.io</title>
-      <link>https://khirotaka.github.io/2020/hello/</link>
-      <pubDate>Mon, 15 Jun 2020 20:40:11 +0900</pubDate>
-      
-      <guid>https://khirotaka.github.io/2020/hello/</guid>
-      <description>はじめに HugoとGitHub Pagesを使って生成したポートフォリオ兼ブログみたいなページ。
-三日坊主のプログラミング日誌 から移行するつもりはないので、 ここと向こう両方使っていくつもり</description>
     </item>
     
   </channel>
