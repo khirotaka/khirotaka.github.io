@@ -19,8 +19,8 @@
       <guid>https://khirotaka.github.io/2020/how_to_deploy/</guid>
       <description>Introduction このページはHugo を使ってMarkdownを元にHTMLを生成している。
 Hugoのテーマ設定だとかは検索すると無限に出てくる既存の記事を参考にしてもらい、 「記事の作成方法」と、「確認」、「デプロイ」の手順をメモっておく。
-Generate an empty blog post まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンを叩く必要がある。
-hugo new posts/~~~~~.md このようにすれば、content/ディレクトリ直下に ~~~~~.md ファイルが生成される。 あとは、普通にMarkdownを書けばいい。
+Generate an empty blog post まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンドを叩く必要がある。
+hugo new posts/~~~~~.md このようにすれば、content/ディレクトリ直下の post/ ディレクトリ内に ~~~~~.md ファイルが生成される。 あとは、普通にMarkdownを書けばいい。
 Validation ローカルマシン上で試しにWebサイトを建てるには、以下のようにする。
 hugo server こうすれば、先に用意した記事をちゃんとサイトの形にしてくれる。
 ただし、 draft: true にしている記事は生成されないので、 これも生成したい場合は、

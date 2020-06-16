@@ -40,8 +40,8 @@
 <meta name="twitter:title" content="Deploying to GitHub Pages using Hugo &amp; Shell script."/>
 <meta name="twitter:description" content="Introduction このページはHugo を使ってMarkdownを元にHTMLを生成している。
 Hugoのテーマ設定だとかは検索すると無限に出てくる既存の記事を参考にしてもらい、 「記事の作成方法」と、「確認」、「デプロイ」の手順をメモっておく。
-Generate an empty blog post まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンを叩く必要がある。
-hugo new posts/~~~~~.md このようにすれば、content/ディレクトリ直下に ~~~~~.md ファイルが生成される。 あとは、普通にMarkdownを書けばいい。
+Generate an empty blog post まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンドを叩く必要がある。
+hugo new posts/~~~~~.md このようにすれば、content/ディレクトリ直下の post/ ディレクトリ内に ~~~~~.md ファイルが生成される。 あとは、普通にMarkdownを書けばいい。
 Validation ローカルマシン上で試しにWebサイトを建てるには、以下のようにする。
 hugo server こうすれば、先に用意した記事をちゃんとサイトの形にしてくれる。
 ただし、 draft: true にしている記事は生成されないので、 これも生成したい場合は、
@@ -61,7 +61,7 @@ Deplying 次のshellスクリプトをリポジトリルートに用意する。
   
   "genre": "posts",
   "keywords": "hugo, usage",
-  "wordcount":  41 ,
+  "wordcount":  43 ,
   "url": "https:\/\/khirotaka.github.io\/2020\/how_to_deploy\/",
   "datePublished": "2020-06-16T00:03:27\u002b09:00",
   "dateModified": "2020-06-16T00:03:27\u002b09:00",
@@ -161,9 +161,9 @@ Deplying 次のshellスクリプトをリポジトリルートに用意する。
 Hugoのテーマ設定だとかは検索すると無限に出てくる既存の記事を参考にしてもらい、
 「記事の作成方法」と、「確認」、「デプロイ」の手順をメモっておく。</p>
 <h2 id="generate-an-empty-blog-post">Generate an empty blog post</h2>
-<p>まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンを叩く必要がある。</p>
+<p>まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンドを叩く必要がある。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo new posts/~~~~~.md
-</code></pre></div><p>このようにすれば、<code>content/</code>ディレクトリ直下に <code>~~~~~.md</code> ファイルが生成される。
+</code></pre></div><p>このようにすれば、<code>content/</code>ディレクトリ直下の <code>post/</code> ディレクトリ内に <code>~~~~~.md</code> ファイルが生成される。
 あとは、普通にMarkdownを書けばいい。</p>
 <h2 id="validation">Validation</h2>
 <p>ローカルマシン上で試しにWebサイトを建てるには、以下のようにする。</p>
@@ -192,7 +192,7 @@ cp -r public/* ../XXXXXX.github.io
            
             <p class="copyright-item">
                     <span>Words:</span>
-                   <span>41</span>
+                   <span>43</span>
             </p>
             
             <p class="copyright-item">
