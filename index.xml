@@ -1,29 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>khirotaka on khirotaka</title>
+    <title>Hirotaka Kawashima</title>
     <link>https://khirotaka.github.io/</link>
-    <description>Recent content in khirotaka on khirotaka</description>
+    <description>Recent content on Hirotaka Kawashima</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-jp</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Tue, 16 Jun 2020 00:03:27 +0900</lastBuildDate>
-    <atom:link href="https://khirotaka.github.io/" rel="self" type="application/rss+xml" />
     
-    <item>
-      <title>Posts</title>
-      <link>https://khirotaka.github.io/posts/</link>
-      <pubDate>Tue, 16 Jun 2020 00:03:27 +0900</pubDate>
-      
-      <guid>https://khirotaka.github.io/posts/</guid>
-      <description></description>
-    </item>
+	<atom:link href="https://khirotaka.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>About</title>
       <link>https://khirotaka.github.io/about/</link>
-      <pubDate>Mon, 15 Jun 2020 20:33:09 +0900</pubDate>
+      <pubDate>Thu, 02 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://khirotaka.github.io/about/</guid>
-      <description></description>
+      <description>I&amp;rsquo;m Hirotaka Kawashima (川島寛隆).
+ Kaggle  ASHRAE - Great Energy Predictor III 161/3614    </description>
+    </item>
+    
+    <item>
+      <title>Deploying to GitHub Pages using Hugo &amp; Shell script.</title>
+      <link>https://khirotaka.github.io/post/how_to_deploy/</link>
+      <pubDate>Tue, 16 Jun 2020 00:03:27 +0900</pubDate>
+      
+      <guid>https://khirotaka.github.io/post/how_to_deploy/</guid>
+      <description>Introduction このページはHugo を使ってMarkdownを元にHTMLを生成している。
+Hugoのテーマ設定だとかは検索すると無限に出てくる既存の記事を参考にしてもらい、 「記事の作成方法」と、「確認」、「デプロイ」の手順をメモっておく。
+Generate an empty blog post まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンドを叩く必要がある。
+hugo new posts/~~~~~.md このようにすれば、content/ディレクトリ直下の post/ ディレクトリ内に ~~~~~.md ファイルが生成される。 あとは、普通にMarkdownを書けばいい。
+Validation ローカルマシン上で試しにWebサイトを建てるには、以下のようにする。
+hugo server こうすれば、先に用意した記事をちゃんとサイトの形にしてくれる。
+ただし、 draft: true にしている記事は生成されないので、 これも生成したい場合は、
+hugo server -D とする。
+Deplying 次のshellスクリプトをリポジトリルートに用意する。 後は実行権限を与えて動かせば、OK
+#!/bin/bash hugo cp -r public/* ../XXXXXX.github.io </description>
+    </item>
+    
+    <item>
+      <title>Hello World@khirotaka.github.io</title>
+      <link>https://khirotaka.github.io/post/hello/</link>
+      <pubDate>Mon, 15 Jun 2020 20:40:11 +0900</pubDate>
+      
+      <guid>https://khirotaka.github.io/post/hello/</guid>
+      <description>はじめに HugoとGitHub Pagesを使って生成したポートフォリオ兼ブログみたいなページ。
+三日坊主のプログラミング日誌 から移行するつもりはないので、 ここと向こう両方使っていくつもり</description>
     </item>
     
   </channel>

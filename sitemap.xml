@@ -1,114 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-    <url>
-      <loc>https://khirotaka.github.io/categories/blog/</loc>
-      
-      <lastmod>2020-06-16T00:03:27+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/about/</loc>
+    <lastmod>2020-07-02T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/categories/</loc>
-      
-      <lastmod>2020-06-16T00:03:27+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/categories/blog/</loc>
+    <lastmod>2020-06-16T00:03:27+09:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/2020/how_to_deploy/</loc>
-      
-      <lastmod>2020-06-16T00:03:27+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/categories/</loc>
+    <lastmod>2020-06-16T00:03:27+09:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/tags/hugo/</loc>
-      
-      <lastmod>2020-06-16T00:03:27+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/post/how_to_deploy/</loc>
+    <lastmod>2020-06-16T00:03:27+09:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/</loc>
-      
-      <lastmod>2020-06-16T00:03:27+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/</loc>
+    <lastmod>2020-06-16T00:03:27+09:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/posts/</loc>
-      
-      <lastmod>2020-06-16T00:03:27+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/tags/hugo/</loc>
+    <lastmod>2020-06-16T00:03:27+09:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/tags/</loc>
-      
-      <lastmod>2020-06-16T00:03:27+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/post/</loc>
+    <lastmod>2020-06-16T00:03:27+09:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/tags/usage/</loc>
-      
-      <lastmod>2020-06-16T00:03:27+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/tags/</loc>
+    <lastmod>2020-06-16T00:03:27+09:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/2020/hello/</loc>
-      
-      <lastmod>2020-06-15T20:40:11+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/tags/usage/</loc>
+    <lastmod>2020-06-16T00:03:27+09:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/tags/introduction/</loc>
-      
-      <lastmod>2020-06-15T20:40:11+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/post/hello/</loc>
+    <lastmod>2020-06-15T20:40:11+09:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://khirotaka.github.io/about/</loc>
-      
-      <lastmod>2020-06-15T20:33:09+09:00</lastmod>
-      
-      
-      
-      
-    </url>
+  <url>
+    <loc>https://khirotaka.github.io/tags/introduction/</loc>
+    <lastmod>2020-06-15T20:40:11+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khirotaka.github.io/series/</loc>
+  </url>
   
 </urlset>
