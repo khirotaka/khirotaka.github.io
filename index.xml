@@ -6,10 +6,28 @@
     <description>Recent content on Hirotaka Kawashima</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 16 Jun 2020 00:03:27 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2020 21:17:20 +0900</lastBuildDate>
     
 	<atom:link href="https://khirotaka.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hello rust</title>
+      <link>https://khirotaka.github.io/post/hello_rust/</link>
+      <pubDate>Wed, 22 Jul 2020 21:17:20 +0900</pubDate>
+      
+      <guid>https://khirotaka.github.io/post/hello_rust/</guid>
+      <description>最近Pythonも程々に書けるようになってきたし、そろそろ静的型付けな言語書きたいなってなってきたのと、 自分のTLでRustがジワジワ盛り上がってるのに感化されてRustに入門してみた。
+そこで、今日はRust用のIDEのセットアップについてメモっておく。
+Rust用IDEの世界 　Rustの開発に使われるIDEランキング1位はどうやらMSのVSCodeらしい(ちなみにこのページを書くためのエディタはVSCodeを使ってる。)。 2位、3位はVimとJetBrainsのIntelliJ IDEAが続くとのこと。(参照: プログラミング言語「Rust」の普及に立ちはだかる壁)
+VSCodeは確かに良いエディタなのだが、設計思想が個人的に合わないのでパス。Vimはサーバーを弄る時とか簡単なコードを書くために常用しているが、 流石にライブラリを書いたり、メソッドを弄りまくったりする場合にvimだと流石にツライ。 ということで、日頃からPyCharmでお世話になっているJetBrainsのIDEを使ってRustを書いて行こうと思う。
+CLionのインストールとIntelliJ Rustのインストール CLionはC/C++用のIDEで最新の2020.1とかだと、CUDAをサポートし始めている界隈だと有名なIDEの１つ。 インストールは簡単で、JetBrains Toolboxがインストール済みならボタンひとつで完了する。
+ JetBrains Toolboxを使ってCLionをインストールする   インストールが完了すると、初回起動時に設定をインポートするかどうか聞かれるが、その際は適宜設定すること。
+ この次に出てくるカスタマイズ画面(Featured plugins)でRustのプラグインを導入する。  これで準備完了。
+Rustプロジェクトの作成 　トップ画面の New Projectをクリック、下の画面になる。 OtherのところにあるRustを選択し、事前にインストールした~/.cargo/binを指定していることを確認し、 Location にプロジェクト名を指定してプロジェクトをCreateする。標準ライブラリがない場合は、Download via rustup でDLする。
+この設定画面は、cargo new PROJECT_NAME —bin をラップしているだけなので、Cargoの仕様(プロジェクト名に . を含めない等)に注意しないと、Cargo環境が整備されない事に注意  あとは、PyCharmと同じく右クリックしてRunすればいい  　これでCLion + IntelliJ Rustを使ったRust開発環境が完成。次回はRustを使ってPython用のモジュールを書いていく。(いつになるか知らないけど)
+ うまくJTBCに転がり込む事ができました(笑)</description>
+    </item>
     
     <item>
       <title>About</title>
