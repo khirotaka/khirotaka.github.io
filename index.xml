@@ -6,10 +6,22 @@
     <description>Recent content on Hirotaka Kawashima</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 22 Jul 2020 21:17:20 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2020 21:12:35 +0900</lastBuildDate>
     
 	<atom:link href="https://khirotaka.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Latex test</title>
+      <link>https://khirotaka.github.io/post/latex_test/</link>
+      <pubDate>Thu, 23 Jul 2020 21:12:35 +0900</pubDate>
+      
+      <guid>https://khirotaka.github.io/post/latex_test/</guid>
+      <description>ここで $x = 2$である。また$F(x) = \frac{1}{5}x^2 + 2$
+ $$ A = \left[ \begin{array}{rrr} -1 &amp; 20 &amp; 3 \\ 4 &amp; -5 &amp; 600 \\ 7 &amp; 8 &amp; -9 \end{array} \right] $$  $$ \mathcal{L}(A, P, N) = \max\Bigl( ||f(A) - f(P)||^2 - ||f(A) - f(N)||^2 + \alpha, 0\Bigr) $$
+$$ \mathcal{L}(x^{ref}, x^{pos}, x^{neg}) = -\log\Bigl(\sigma\bigl(f(\mathcal{x}^{ref}, \mathcal{\theta}) ^\mathrm{T} f(\mathcal{x}^{pos}, \mathcal{\theta})\bigr)\Bigr) - \sum^K_{k=1}\log\Bigl(\sigma\bigl(-f(\mathcal{x}^{ref}, \mathcal{\theta}) ^\mathrm{T}f(\mathcal{x}_k^{neg}, \mathcal{\theta})\bigr)\Bigl) $$
+ $$ \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \tag{13} $$   $$ \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix} \tag{14} $$  $$ % \newline with MathJax \begin{aligned} a &amp;amp;= 1 \newline b &amp;amp;= 2 \end{aligned} $$</description>
+    </item>
     
     <item>
       <title>Hello rust</title>
