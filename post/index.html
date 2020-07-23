@@ -44,7 +44,7 @@
 <meta itemprop="name" content="Posts">
 <meta itemprop="description" content="khirotaka&#39;s portfolio &amp; blogs.">
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://khirotaka.github.io"/>
+<meta name="twitter:image" content="https://khirotaka.github.io/images/me/ogp.png"/>
 
 <meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content="khirotaka&#39;s portfolio &amp; blogs."/>
@@ -55,7 +55,7 @@
 <meta property="og:description" content="khirotaka&#39;s portfolio &amp; blogs." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://khirotaka.github.io/post/" />
-<meta property="og:image" content="https://khirotaka.github.io"/>
+<meta property="og:image" content="https://khirotaka.github.io/images/me/ogp.png"/>
 <meta property="og:updated_time" content="2020-07-22T21:17:20+09:00" /><meta property="og:site_name" content="Hirotaka Kawashima" />
 
 
@@ -115,6 +115,28 @@
 </span>
         </span>
     </span>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </header>
 
 
@@ -182,6 +204,13 @@
 
             
                 <footer class="footer">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [['$','$']]
+          }
+        });
+        </script>
     <div class="footer__inner">
         <div class="footer__content">
             <span>&copy; 2020</span>

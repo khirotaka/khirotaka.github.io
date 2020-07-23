@@ -64,13 +64,13 @@ Deplying 次のshellスクリプトをリポジトリルートに用意する。
 <meta itemprop="datePublished" content="2020-06-16T00:03:27&#43;09:00" />
 <meta itemprop="dateModified" content="2020-06-16T00:03:27&#43;09:00" />
 <meta itemprop="wordCount" content="43">
-<meta itemprop="image" content="https://khirotaka.github.io"/>
+<meta itemprop="image" content="https://khirotaka.github.io/images/me/ogp.png"/>
 
 
 
 <meta itemprop="keywords" content="hugo,usage," />
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://khirotaka.github.io"/>
+<meta name="twitter:image" content="https://khirotaka.github.io/images/me/ogp.png"/>
 
 <meta name="twitter:title" content="Deploying to GitHub Pages using Hugo &amp; Shell script."/>
 <meta name="twitter:description" content="Introduction このページはHugo を使ってMarkdownを元にHTMLを生成している。
@@ -99,7 +99,7 @@ Deplying 次のshellスクリプトをリポジトリルートに用意する。
 #!/bin/bash hugo cp -r public/* ../XXXXXX.github.io " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://khirotaka.github.io/post/how_to_deploy/" />
-<meta property="og:image" content="https://khirotaka.github.io"/>
+<meta property="og:image" content="https://khirotaka.github.io/images/me/ogp.png"/>
 <meta property="article:published_time" content="2020-06-16T00:03:27+09:00" />
 <meta property="article:modified_time" content="2020-06-16T00:03:27+09:00" /><meta property="og:site_name" content="Hirotaka Kawashima" />
 
@@ -163,6 +163,28 @@ Deplying 次のshellスクリプトをリポジトリルートに用意する。
 </span>
         </span>
     </span>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </header>
 
 
@@ -221,6 +243,13 @@ cp -r public/* ../XXXXXX.github.io
 
             
                 <footer class="footer">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [['$','$']]
+          }
+        });
+        </script>
     <div class="footer__inner">
         <div class="footer__content">
             <span>&copy; 2020</span>
