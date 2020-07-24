@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>programming on Hirotaka Kawashima</title>
+    <title>Programming on Hirotaka Kawashima</title>
     <link>https://khirotaka.github.io/tags/programming/</link>
-    <description>Recent content in programming on Hirotaka Kawashima</description>
+    <description>Recent content in Programming on Hirotaka Kawashima</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 22 Jul 2020 21:17:20 +0900</lastBuildDate>
@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Hello rust</title>
+      <title>Hello Rust</title>
       <link>https://khirotaka.github.io/post/hello_rust/</link>
       <pubDate>Wed, 22 Jul 2020 21:17:20 +0900</pubDate>
       

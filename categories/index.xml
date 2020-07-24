@@ -12,11 +12,20 @@
     
     
     <item>
-      <title>blog</title>
+      <title>Blog</title>
       <link>https://khirotaka.github.io/categories/blog/</link>
       <pubDate>Wed, 22 Jul 2020 21:17:20 +0900</pubDate>
       
       <guid>https://khirotaka.github.io/categories/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Technical Note</title>
+      <link>https://khirotaka.github.io/categories/technical-note/</link>
+      <pubDate>Wed, 22 Jul 2020 21:17:20 +0900</pubDate>
+      
+      <guid>https://khirotaka.github.io/categories/technical-note/</guid>
       <description></description>
     </item>
     

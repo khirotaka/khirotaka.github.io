@@ -15,7 +15,7 @@ CLionのインストールとIntelliJ Rustのインストール CLionはC/C&#43;
 Rustプロジェクトの作成 　トップ画面の New Projectをクリック、下の画面になる。 OtherのところにあるRustを選択し、事前にインストールした~/.cargo/binを指定していることを確認し、 Location にプロジェクト名を指定してプロジェクトをCreateする。標準ライブラリがない場合は、Download via rustup でDLする。
 この設定画面は、cargo new PROJECT_NAME —bin をラップしているだけなので、Cargoの仕様(プロジェクト名に . を含めない等)に注意しないと、Cargo環境が整備されない事に注意  あとは、PyCharmと同じく右クリックしてRunすればいい  　これでCLion &#43; IntelliJ Rustを使ったRust開発環境が完成。次回はRustを使ってPython用のモジュールを書いていく。(いつになるか知らないけど)
  うまくJTBCに転がり込む事ができました(笑)" />
-<meta name="keywords" content=", rust, programming" />
+<meta name="keywords" content=", Rust, Programming" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="#252627" />
 <link rel="canonical" href="https://khirotaka.github.io/post/hello_rust/" />
@@ -23,7 +23,7 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 
     <title>
         
-            Hello rust :: Hirotaka Kawashima 
+            Hello Rust :: Hirotaka Kawashima 
         
     </title>
 
@@ -50,7 +50,7 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 
 
 
-<meta itemprop="name" content="Hello rust">
+<meta itemprop="name" content="Hello Rust">
 <meta itemprop="description" content="最近Pythonも程々に書けるようになってきたし、そろそろ静的型付けな言語書きたいなってなってきたのと、 自分のTLでRustがジワジワ盛り上がってるのに感化されてRustに入門してみた。
 そこで、今日はRust用のIDEのセットアップについてメモっておく。
 Rust用IDEの世界 　Rustの開発に使われるIDEランキング1位はどうやらMSのVSCodeらしい(ちなみにこのページを書くためのエディタはVSCodeを使ってる。)。 2位、3位はVimとJetBrainsのIntelliJ IDEAが続くとのこと。(参照: プログラミング言語「Rust」の普及に立ちはだかる壁)
@@ -68,11 +68,11 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 
 
 
-<meta itemprop="keywords" content="rust,programming," />
+<meta itemprop="keywords" content="Rust,Programming," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://khirotaka.github.io/images/me/ogp.png"/>
 
-<meta name="twitter:title" content="Hello rust"/>
+<meta name="twitter:title" content="Hello Rust"/>
 <meta name="twitter:description" content="最近Pythonも程々に書けるようになってきたし、そろそろ静的型付けな言語書きたいなってなってきたのと、 自分のTLでRustがジワジワ盛り上がってるのに感化されてRustに入門してみた。
 そこで、今日はRust用のIDEのセットアップについてメモっておく。
 Rust用IDEの世界 　Rustの開発に使われるIDEランキング1位はどうやらMSのVSCodeらしい(ちなみにこのページを書くためのエディタはVSCodeを使ってる。)。 2位、3位はVimとJetBrainsのIntelliJ IDEAが続くとのこと。(参照: プログラミング言語「Rust」の普及に立ちはだかる壁)
@@ -86,7 +86,7 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 
 
 
-    <meta property="og:title" content="Hello rust" />
+    <meta property="og:title" content="Hello Rust" />
 <meta property="og:description" content="最近Pythonも程々に書けるようになってきたし、そろそろ静的型付けな言語書きたいなってなってきたのと、 自分のTLでRustがジワジワ盛り上がってるのに感化されてRustに入門してみた。
 そこで、今日はRust用のIDEのセットアップについてメモっておく。
 Rust用IDEの世界 　Rustの開発に使われるIDEランキング1位はどうやらMSのVSCodeらしい(ちなみにこのページを書くためのエディタはVSCodeを使ってる。)。 2位、3位はVimとJetBrainsのIntelliJ IDEAが続くとのこと。(参照: プログラミング言語「Rust」の普及に立ちはだかる壁)
@@ -106,7 +106,9 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 
 
 
-    <meta property="article:section" content="blog" />
+    <meta property="article:section" content="Blog" />
+
+    <meta property="article:section" content="Technical Note" />
 
 
 
@@ -163,28 +165,6 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 </span>
         </span>
     </span>
-    <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$','$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        processEnvironments: true
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      }
-    };
-  
-    window.addEventListener('load', (event) => {
-        document.querySelectorAll("mjx-container").forEach(function(x){
-          x.parentElement.classList += 'has-jax'})
-      });
-  
-  </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </header>
 
 
@@ -198,7 +178,7 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
         </div>
 
         <article>
-            <h2 class="post-title"><a href="https://khirotaka.github.io/post/hello_rust/">Hello rust</a></h2>
+            <h2 class="post-title"><a href="https://khirotaka.github.io/post/hello_rust/">Hello Rust</a></h2>
 
             
 
@@ -255,7 +235,7 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 
         <div class="post-info">
   				<p>
-  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://khirotaka.github.io/tags/rust">rust</a></span><span class="tag"><a href="https://khirotaka.github.io/tags/programming">programming</a></span>
+  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://khirotaka.github.io/tags/rust">Rust</a></span><span class="tag"><a href="https://khirotaka.github.io/tags/programming">Programming</a></span>
   				</p>
   		</div>
     </main>
@@ -264,13 +244,6 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 
             
                 <footer class="footer">
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-          tex2jax: {
-            inlineMath: [['$','$']]
-          }
-        });
-        </script>
     <div class="footer__inner">
         <div class="footer__content">
             <span>&copy; 2020</span>
@@ -289,6 +262,20 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
             <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
         </div>
     </div>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false}]
+        });
+      });
+    </script>
+
 </footer>
 
             
@@ -300,20 +287,6 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 
 
 <script type="text/javascript" src="https://khirotaka.github.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-111362772-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
 
 
