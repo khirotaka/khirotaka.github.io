@@ -6,10 +6,31 @@
     <description>Recent content in Technical Note on Hirotaka Kawashima</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 22 Jul 2020 21:17:20 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2020 23:32:44 +0900</lastBuildDate>
     
 	<atom:link href="https://khirotaka.github.io/categories/technical-note/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Paper Reading] Unsupervised Scalable Representation Learning for Multivariate Time Series</title>
+      <link>https://khirotaka.github.io/post/unsupervised_scalable_representation_learning_for_multivariate_time_series/</link>
+      <pubDate>Wed, 05 Aug 2020 23:32:44 +0900</pubDate>
+      
+      <guid>https://khirotaka.github.io/post/unsupervised_scalable_representation_learning_for_multivariate_time_series/</guid>
+      <description>自分の参加している機械学習勉強会で発表するために読んだ論文のメモ書き。 このサイトを $\TeX{}$ 対応させたのもこの記事を書きたかったがため。
+　NeurIPS 2019の採用論文で、多変量時系列データを対象に埋め込み表現を作るという内容。 要は時系列データ相手のWord2Vec。
+　論文は こちら。 (NeurIPS版よりもarXiv版の方がAppendixが付いていて、より詳細なのでオススメ)著者が公開しているコードは GitHub で公開されている。
+Abstract 　時系列の普遍的な埋め込み表現を学習する教師なし法の提案。Causal Dilated Convolutionを使ったエンコーダと時間ベースのネガティブサンプリングを使用するTriplet Lossを組み合わせて可変長・多変量時系列の汎用表現を取得することができる。
+利点 &amp;hellip; 長さに関してスケーラブル。
+Intro 　NLPや画像分野ではたくさんの表現学習についての研究が行われているが、時系列用の汎用的な表現学習についての研究は少ない。
+なぜか
+ 時系列データにラベル付けされている事がほとんどないか、あってもまばら。 時系列データの長さが同じでなくても同じ表現を返す必要がある。 学習時間と推論時間の両方でスケーラビリティと効率性が重要であり、実際に遭遇する短い時系列と長い時系列の両方に対応しなければならない  　評価実験は UCR/UEA 時系列データベースにあるデータセットを使って評価した。(CNNベースのエンコーダを用いて時系列の汎用表現を計算して、SVMで分類する)
+訓練 　最終的な目的としては、似たような時系列データが入力された時、似た様な表現を出力される様にしたい。しかもそれを教師なしで。 まず、Triplet Lossを使えば、前者(似た様な系列が来たら似た様な表現を返す)を達成するが可能になるが、元々教師ある学習用の関数なので、後者を解決する。
+Triplet Lossとは $$ \mathcal{L}(A, P, N) = \max\Bigl( ||f(A) - f(P)||^2 - ||f(A) - f(N)||^2 + \alpha, 0\Bigr) $$
+　ここで、$A$ はアンカー入力、$P$は$A$と同じクラスで、ポジティブ入力と呼び、$N$はネガティブ入力と呼ばれ、$A$とは異なるクラス。$\alpha$はポシティブとネガティブのペアの間のマージン。$f$は埋め込み。
+このLossが0になれば、同じクラス同士の表現は違い表現を、違うクラス同士の表現は全く違う表現を出力できるネットワークが完成する。
+　この論文のTriplet lossはword2vecを参考にしている。Word2Vecの一種にCBOWモデルというものがある。CBOWモデルで使われる手法にNegative Sampling というのがある。</description>
+    </item>
     
     <item>
       <title>Hello Rust</title>

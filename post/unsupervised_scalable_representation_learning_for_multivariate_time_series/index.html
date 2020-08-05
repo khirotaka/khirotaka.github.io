@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hirotaka Kawashima ">
+<meta name="description" content="自分の参加している機械学習勉強会で発表するために読んだ論文のメモ書き。 このサイトを $\TeX{}$ 対応させたのもこの記事を書きたかったがため。
+　NeurIPS 2019の採用論文で、多変量時系列データを対象に埋め込み表現を作るという内容。 要は時系列データ相手のWord2Vec。
+　論文は こちら。 (NeurIPS版よりもarXiv版の方がAppendixが付いていて、より詳細なのでオススメ)著者が公開しているコードは GitHub で公開されている。
+Abstract 　時系列の普遍的な埋め込み表現を学習する教師なし法の提案。Causal Dilated Convolutionを使ったエンコーダと時間ベースのネガティブサンプリングを使用するTriplet Lossを組み合わせて可変長・多変量時系列の汎用表現を取得することができる。
+利点 &amp;hellip; 長さに関してスケーラブル。
+Intro 　NLPや画像分野ではたくさんの表現学習についての研究が行われているが、時系列用の汎用的な表現学習についての研究は少ない。
+なぜか
+ 時系列データにラベル付けされている事がほとんどないか、あってもまばら。 時系列データの長さが同じでなくても同じ表現を返す必要がある。 学習時間と推論時間の両方でスケーラビリティと効率性が重要であり、実際に遭遇する短い時系列と長い時系列の両方に対応しなければならない  　評価実験は UCR/UEA 時系列データベースにあるデータセットを使って評価した。(CNNベースのエンコーダを用いて時系列の汎用表現を計算して、SVMで分類する)
+訓練 　最終的な目的としては、似たような時系列データが入力された時、似た様な表現を出力される様にしたい。しかもそれを教師なしで。 まず、Triplet Lossを使えば、前者(似た様な系列が来たら似た様な表現を返す)を達成するが可能になるが、元々教師ある学習用の関数なので、後者を解決する。
+Triplet Lossとは $$ \mathcal{L}(A, P, N) = \max\Bigl( ||f(A) - f(P)||^2 - ||f(A) - f(N)||^2 &#43; \alpha, 0\Bigr) $$
+　ここで、$A$ はアンカー入力、$P$は$A$と同じクラスで、ポジティブ入力と呼び、$N$はネガティブ入力と呼ばれ、$A$とは異なるクラス。$\alpha$はポシティブとネガティブのペアの間のマージン。$f$は埋め込み。
+このLossが0になれば、同じクラス同士の表現は違い表現を、違うクラス同士の表現は全く違う表現を出力できるネットワークが完成する。
+　この論文のTriplet lossはword2vecを参考にしている。Word2Vecの一種にCBOWモデルというものがある。CBOWモデルで使われる手法にNegative Sampling というのがある。" />
+<meta name="keywords" content=", Machine Learning, Deep Learning" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="https://khirotaka.github.io/post/unsupervised_scalable_representation_learning_for_multivariate_time_series/" />
+
+
+    <title>
+        
+            [Paper Reading] Unsupervised Scalable Representation Learning for Multivariate Time Series :: Hirotaka Kawashima 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://khirotaka.github.io/main.dede02da9537a98158079c023e83573e18127834838ef08172acce888341a797.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://khirotaka.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://khirotaka.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://khirotaka.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://khirotaka.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://khirotaka.github.io/safari-pinned-tab.svg" color="#252627">
+    <link rel="shortcut icon" href="https://khirotaka.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+
+
+<meta itemprop="name" content="[Paper Reading] Unsupervised Scalable Representation Learning for Multivariate Time Series">
+<meta itemprop="description" content="自分の参加している機械学習勉強会で発表するために読んだ論文のメモ書き。 このサイトを $\TeX{}$ 対応させたのもこの記事を書きたかったがため。
+　NeurIPS 2019の採用論文で、多変量時系列データを対象に埋め込み表現を作るという内容。 要は時系列データ相手のWord2Vec。
+　論文は こちら。 (NeurIPS版よりもarXiv版の方がAppendixが付いていて、より詳細なのでオススメ)著者が公開しているコードは GitHub で公開されている。
+Abstract 　時系列の普遍的な埋め込み表現を学習する教師なし法の提案。Causal Dilated Convolutionを使ったエンコーダと時間ベースのネガティブサンプリングを使用するTriplet Lossを組み合わせて可変長・多変量時系列の汎用表現を取得することができる。
+利点 &hellip; 長さに関してスケーラブル。
+Intro 　NLPや画像分野ではたくさんの表現学習についての研究が行われているが、時系列用の汎用的な表現学習についての研究は少ない。
+なぜか
+ 時系列データにラベル付けされている事がほとんどないか、あってもまばら。 時系列データの長さが同じでなくても同じ表現を返す必要がある。 学習時間と推論時間の両方でスケーラビリティと効率性が重要であり、実際に遭遇する短い時系列と長い時系列の両方に対応しなければならない  　評価実験は UCR/UEA 時系列データベースにあるデータセットを使って評価した。(CNNベースのエンコーダを用いて時系列の汎用表現を計算して、SVMで分類する)
+訓練 　最終的な目的としては、似たような時系列データが入力された時、似た様な表現を出力される様にしたい。しかもそれを教師なしで。 まず、Triplet Lossを使えば、前者(似た様な系列が来たら似た様な表現を返す)を達成するが可能になるが、元々教師ある学習用の関数なので、後者を解決する。
+Triplet Lossとは $$ \mathcal{L}(A, P, N) = \max\Bigl( ||f(A) - f(P)||^2 - ||f(A) - f(N)||^2 &#43; \alpha, 0\Bigr) $$
+　ここで、$A$ はアンカー入力、$P$は$A$と同じクラスで、ポジティブ入力と呼び、$N$はネガティブ入力と呼ばれ、$A$とは異なるクラス。$\alpha$はポシティブとネガティブのペアの間のマージン。$f$は埋め込み。
+このLossが0になれば、同じクラス同士の表現は違い表現を、違うクラス同士の表現は全く違う表現を出力できるネットワークが完成する。
+　この論文のTriplet lossはword2vecを参考にしている。Word2Vecの一種にCBOWモデルというものがある。CBOWモデルで使われる手法にNegative Sampling というのがある。">
+<meta itemprop="datePublished" content="2020-08-05T23:32:44&#43;09:00" />
+<meta itemprop="dateModified" content="2020-08-05T23:32:44&#43;09:00" />
+<meta itemprop="wordCount" content="209">
+<meta itemprop="image" content="https://khirotaka.github.io/images/me/ogp.jpg"/>
+
+
+
+<meta itemprop="keywords" content="Machine Learning,Deep Learning," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://khirotaka.github.io/images/me/ogp.jpg"/>
+
+<meta name="twitter:title" content="[Paper Reading] Unsupervised Scalable Representation Learning for Multivariate Time Series"/>
+<meta name="twitter:description" content="自分の参加している機械学習勉強会で発表するために読んだ論文のメモ書き。 このサイトを $\TeX{}$ 対応させたのもこの記事を書きたかったがため。
+　NeurIPS 2019の採用論文で、多変量時系列データを対象に埋め込み表現を作るという内容。 要は時系列データ相手のWord2Vec。
+　論文は こちら。 (NeurIPS版よりもarXiv版の方がAppendixが付いていて、より詳細なのでオススメ)著者が公開しているコードは GitHub で公開されている。
+Abstract 　時系列の普遍的な埋め込み表現を学習する教師なし法の提案。Causal Dilated Convolutionを使ったエンコーダと時間ベースのネガティブサンプリングを使用するTriplet Lossを組み合わせて可変長・多変量時系列の汎用表現を取得することができる。
+利点 &hellip; 長さに関してスケーラブル。
+Intro 　NLPや画像分野ではたくさんの表現学習についての研究が行われているが、時系列用の汎用的な表現学習についての研究は少ない。
+なぜか
+ 時系列データにラベル付けされている事がほとんどないか、あってもまばら。 時系列データの長さが同じでなくても同じ表現を返す必要がある。 学習時間と推論時間の両方でスケーラビリティと効率性が重要であり、実際に遭遇する短い時系列と長い時系列の両方に対応しなければならない  　評価実験は UCR/UEA 時系列データベースにあるデータセットを使って評価した。(CNNベースのエンコーダを用いて時系列の汎用表現を計算して、SVMで分類する)
+訓練 　最終的な目的としては、似たような時系列データが入力された時、似た様な表現を出力される様にしたい。しかもそれを教師なしで。 まず、Triplet Lossを使えば、前者(似た様な系列が来たら似た様な表現を返す)を達成するが可能になるが、元々教師ある学習用の関数なので、後者を解決する。
+Triplet Lossとは $$ \mathcal{L}(A, P, N) = \max\Bigl( ||f(A) - f(P)||^2 - ||f(A) - f(N)||^2 &#43; \alpha, 0\Bigr) $$
+　ここで、$A$ はアンカー入力、$P$は$A$と同じクラスで、ポジティブ入力と呼び、$N$はネガティブ入力と呼ばれ、$A$とは異なるクラス。$\alpha$はポシティブとネガティブのペアの間のマージン。$f$は埋め込み。
+このLossが0になれば、同じクラス同士の表現は違い表現を、違うクラス同士の表現は全く違う表現を出力できるネットワークが完成する。
+　この論文のTriplet lossはword2vecを参考にしている。Word2Vecの一種にCBOWモデルというものがある。CBOWモデルで使われる手法にNegative Sampling というのがある。"/>
+
+
+
+    <meta property="og:title" content="[Paper Reading] Unsupervised Scalable Representation Learning for Multivariate Time Series" />
+<meta property="og:description" content="自分の参加している機械学習勉強会で発表するために読んだ論文のメモ書き。 このサイトを $\TeX{}$ 対応させたのもこの記事を書きたかったがため。
+　NeurIPS 2019の採用論文で、多変量時系列データを対象に埋め込み表現を作るという内容。 要は時系列データ相手のWord2Vec。
+　論文は こちら。 (NeurIPS版よりもarXiv版の方がAppendixが付いていて、より詳細なのでオススメ)著者が公開しているコードは GitHub で公開されている。
+Abstract 　時系列の普遍的な埋め込み表現を学習する教師なし法の提案。Causal Dilated Convolutionを使ったエンコーダと時間ベースのネガティブサンプリングを使用するTriplet Lossを組み合わせて可変長・多変量時系列の汎用表現を取得することができる。
+利点 &hellip; 長さに関してスケーラブル。
+Intro 　NLPや画像分野ではたくさんの表現学習についての研究が行われているが、時系列用の汎用的な表現学習についての研究は少ない。
+なぜか
+ 時系列データにラベル付けされている事がほとんどないか、あってもまばら。 時系列データの長さが同じでなくても同じ表現を返す必要がある。 学習時間と推論時間の両方でスケーラビリティと効率性が重要であり、実際に遭遇する短い時系列と長い時系列の両方に対応しなければならない  　評価実験は UCR/UEA 時系列データベースにあるデータセットを使って評価した。(CNNベースのエンコーダを用いて時系列の汎用表現を計算して、SVMで分類する)
+訓練 　最終的な目的としては、似たような時系列データが入力された時、似た様な表現を出力される様にしたい。しかもそれを教師なしで。 まず、Triplet Lossを使えば、前者(似た様な系列が来たら似た様な表現を返す)を達成するが可能になるが、元々教師ある学習用の関数なので、後者を解決する。
+Triplet Lossとは $$ \mathcal{L}(A, P, N) = \max\Bigl( ||f(A) - f(P)||^2 - ||f(A) - f(N)||^2 &#43; \alpha, 0\Bigr) $$
+　ここで、$A$ はアンカー入力、$P$は$A$と同じクラスで、ポジティブ入力と呼び、$N$はネガティブ入力と呼ばれ、$A$とは異なるクラス。$\alpha$はポシティブとネガティブのペアの間のマージン。$f$は埋め込み。
+このLossが0になれば、同じクラス同士の表現は違い表現を、違うクラス同士の表現は全く違う表現を出力できるネットワークが完成する。
+　この論文のTriplet lossはword2vecを参考にしている。Word2Vecの一種にCBOWモデルというものがある。CBOWモデルで使われる手法にNegative Sampling というのがある。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khirotaka.github.io/post/unsupervised_scalable_representation_learning_for_multivariate_time_series/" />
+<meta property="og:image" content="https://khirotaka.github.io/images/me/ogp.jpg"/>
+<meta property="article:published_time" content="2020-08-05T23:32:44+09:00" />
+<meta property="article:modified_time" content="2020-08-05T23:32:44+09:00" /><meta property="og:site_name" content="Hirotaka Kawashima" />
+
+
+
+
+    <meta property="article:section" content="Technical note" />
+
+    <meta property="article:section" content="Paper Reading" />
+
+
+
+    <meta property="article:published_time" content="2020-08-05 23:32:44 &#43;0900 JST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://khirotaka.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">khirotaka/</span>
+            <span class="logo__cursor" style=
+                  "
+                   background-color:#5F605F;
+                   animation-duration:1s;">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://khirotaka.github.io/about/">About</a></li><li><a href="https://khirotaka.github.io/post/">Blogs</a></li><li><a href="https://khirotaka.github.io/categories/">Categories</a></li><li><a href="https://khirotaka.github.io/tags/">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://khirotaka.github.io/post/unsupervised_scalable_representation_learning_for_multivariate_time_series/">[Paper Reading] Unsupervised Scalable Representation Learning for Multivariate Time Series</a></h2>
+
+            
+
+            <div class="post-content">
+                <p>　自分の参加している機械学習勉強会で発表するために読んだ論文のメモ書き。
+このサイトを $\TeX{}$ 対応させたのもこの記事を書きたかったがため。</p>
+<p>　NeurIPS 2019の採用論文で、多変量時系列データを対象に埋め込み表現を作るという内容。
+要は時系列データ相手のWord2Vec。</p>
+<p>　論文は <strong><a href="https://arxiv.org/abs/1901.10738" target="_blank">こちら</a></strong>。
+(<a href="https://papers.nips.cc/paper/8713-unsupervised-scalable-representation-learning-for-multivariate-time-series" target="_blank">NeurIPS版</a>よりもarXiv版の方がAppendixが付いていて、より詳細なのでオススメ)著者が公開しているコードは <strong><a href="https://github.com/White-Link/UnsupervisedScalableRepresentationLearningTimeSeries" target="_blank">GitHub</a></strong> で公開されている。</p>
+<h1 id="abstract">Abstract</h1>
+<p>　時系列の普遍的な埋め込み表現を学習する教師なし法の提案。Causal Dilated Convolutionを使ったエンコーダと時間ベースのネガティブサンプリングを使用するTriplet Lossを組み合わせて可変長・多変量時系列の汎用表現を取得することができる。</p>
+<p>利点 &hellip; 長さに関してスケーラブル。</p>
+<h1 id="intro">Intro</h1>
+<p>　NLPや画像分野ではたくさんの表現学習についての研究が行われているが、時系列用の汎用的な表現学習についての研究は少ない。</p>
+<p>なぜか</p>
+<ol>
+<li>時系列データにラベル付けされている事がほとんどないか、あってもまばら。</li>
+<li>時系列データの長さが同じでなくても同じ表現を返す必要がある。</li>
+<li>学習時間と推論時間の両方でスケーラビリティと効率性が重要であり、実際に遭遇する短い時系列と長い時系列の両方に対応しなければならない</li>
+</ol>
+<p>　評価実験は UCR/UEA 時系列データベースにあるデータセットを使って評価した。(CNNベースのエンコーダを用いて時系列の汎用表現を計算して、SVMで分類する)</p>
+<h1 id="訓練">訓練</h1>
+<p>　最終的な目的としては、似たような時系列データが入力された時、似た様な表現を出力される様にしたい。しかもそれを教師なしで。
+まず、Triplet Lossを使えば、前者(似た様な系列が来たら似た様な表現を返す)を達成するが可能になるが、元々教師ある学習用の関数なので、後者を解決する。</p>
+<h2 id="triplet-lossとは">Triplet Lossとは</h2>
+<p>$$
+\mathcal{L}(A, P, N) = \max\Bigl( ||f(A) - f(P)||^2 - ||f(A) - f(N)||^2 + \alpha, 0\Bigr)
+$$</p>
+<p>　ここで、$A$ はアンカー入力、$P$は$A$と同じクラスで、ポジティブ入力と呼び、$N$はネガティブ入力と呼ばれ、$A$とは異なるクラス。$\alpha$はポシティブとネガティブのペアの間のマージン。$f$は埋め込み。<br>
+　このLossが0になれば、同じクラス同士の表現は違い表現を、違うクラス同士の表現は全く違う表現を出力できるネットワークが完成する。</p>
+<p>　この論文のTriplet lossはword2vecを参考にしている。Word2Vecの一種にCBOWモデルというものがある。CBOWモデルで使われる手法にNegative Sampling というのがある。</p>
+<blockquote>
+<p>「you say goodbye」という文があったとして、sayをターゲット、周りのyou と goodbyeをコンテキストと呼ぶことにして、「you ???? goodbye」で???にsayがくる確率を最大にすることを考える。この時、正例(say)をターゲットにした場合の損失と一緒にn個の負例(say以外の単語)が来たときの損失も一緒に算出し足し合わせ最終的な損失とする</p>
+</blockquote>
+<p>　この仕組みを時系列にも取り入れたい。</p>
+<p>　ここで、Fig 1のイラストの様に、入力系列$y_i$のランダムな部分系列$\mathcal{x}^{ref}$を考える。$\mathcal{x}^{ref}$の表現は、自身の部分系列$x^{pos}$に近い物にならなければならない(Positiveな例)。一方で、ランダムに選択された別の時系列$x^{neg}$を考える。これは、<strong>時系列が十分に長く且つ定常でないなら同じ時系列から採ってもいい</strong>し、<strong>複数の時系列が利用可能ならランダムに選択して$\mathcal{y}_j$部分時系列に切り取る</strong>。</p>
+<div align="center">
+<img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/fig1.png" width="500">
+</div>
+<p>　word2vecの考え方(というかnegative samplingの考え方)にのっとると、$x^{pos}$はword(もしくはターゲット)、$x^{ref}$はコンテキスト、$x^{neg}$はランダムワード(負例)となる。</p>
+<p>　これの損失関数は、</p>
+<p>$$
+\mathcal{L}(x^{ref}, x^{pos}, x^{neg}) = -\log\Bigl(\sigma\bigl(f(\mathcal{x}^{ref}, \mathcal{\theta}) ^\mathrm{T} f(\mathcal{x}^{pos}, \mathcal{\theta})\bigr)\Bigr) - \sum^K_{k=1}\log\Bigl(\sigma\bigl(-f(\mathcal{x}^{ref}, \mathcal{\theta}) ^\mathrm{T}f(\mathcal{x}_k^{neg}, \mathcal{\theta})\bigr)\Bigl)
+$$</p>
+<p>　ここで$\sigma$はsigmoid関数。</p>
+<p>例えば、</p>
+<div>
+$$
+x^{ref} = \begin{bmatrix}
+            3.0 \\
+            2.0
+          \end{bmatrix},
+x^{pos} = \begin{bmatrix}
+            2.5 \\
+            1.8
+          \end{bmatrix},
+x^{neg} = \begin{bmatrix}
+            -3.0 \\
+            -2.0 
+          \end{bmatrix}
+$$
+</div>
+<p>の様な埋め込む表現が出来たとしよう。</p>
+<p>　上の式にこれを代入すると、</p>
+<p>$$
+-\log(\sigma(11.1)) - \log(\sigma(-13.0)) \fallingdotseq 0.0
+$$</p>
+<p>となるわけだ。つまり、この関数で計算される損失を0になる様にネットワークを訓練すれば、$x^{ref}$ と $x^{pos}$ は近い表現に、$x^{ref}$ と $x^{neg}$ は明らかに遠い表現を生成できる様になるわけだ。よく出来ている。</p>
+<p>　訓練の手順は、以下のAlgorithm 1を用いてランダムに選択したタプル$(x^{ref}, x^{pos}, (x_{k}^{neg})_k)$を用意、
+任意のエンコーダを用いて各ペアに対応する表現を生成、上記の式を用いて算出した損失を最小にする。</p>
+<div align="center">
+<img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/algorithm_1.jpg", title="Algorithm 1">
+</div>
+<p>　全体の計算とメモリの計算量は$\mathcal{O}(K \cdot c(\mathcal{f}))$ であり、ここで、$c(\mathcal{f})$ は$\mathcal{f}$を評価して、逆伝播するコストである。</p>
+<h1 id="encoder-architecture">Encoder Architecture</h1>
+<ol>
+<li>時系列から関連する情報を抽出する必要がある。</li>
+<li>訓練とテストの両方で時間とメモリ効率が良い必要がある</li>
+<li>可変長入力が可能である</li>
+</ol>
+<p>の3点を満たす必要がある。</p>
+<p>　Exponentially Dilated Causal Convolutionを使う。これは名前の通り、指数関数的に拡張された畳み込みを導入さしており、一般的な畳み込みと比較して、ネットワークの受容野を指数関数的に増加させることにより、一定の深さでの長距離依存性をより良く捕捉することができる為、1つ目の問題は解決。2つ目はRNNに比べ、並列化が可能なCNNなので、これも解決。</p>
+<p>　可変長に対応するってのは、ネットワーク内で<a href="https://pytorch.org/docs/master/generated/torch.nn.AdaptiveMaxPool1d.html"><code>torch.nn.AdaptiveMaxPool1d(1)</code></a> いわゆるGlobal MaxPoolingを使っているので(ちょっと強引に)可変長対応している。</p>
+<h3 id="causal-convolutionとdilated">Causal ConvolutionとDilated</h3>
+<p>　Conv層はカーネル(フィルタ)というものを使って畳み込み処理を行う。このカーネルとの積をとる相手をn個飛ばしにしたのがDilated Convolution。</p>
+<p>下の図は、<code>dilated=2</code> の畳み込み。ちなみに、<code>dilated=1</code> は通常の畳み込みと同じ。</p>
+<p>大抵のライブラリなら畳み込み層のインスタンス生成時に引数で設定すればよくて、PyTorchなら<code>torch.nn.Conv1d(..., dilation=...)</code>で試すことができる。</p>
+<p>これの利点は、少ないパラメータでより広い範囲の情報を参照することが出来る点。</p>
+<div align="center">
+<img src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/dilation.gif?raw=true", width="250">
+</div>
+<br>
+<br>
+カーネルサイズ3のconvを適用した場合、  
+<br>
+<br>
+<div align="center">
+<img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/conv1d_k3.jpeg", width="400">
+</div>
+<br>
+<br>
+<p>赤点の周囲1ピクセルを参照する処理になっているが、dilation=2の場合、</p>
+<br>
+<br>
+<div align="center">
+<img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/conv1d_k3_d2.jpeg", width="400">
+</div>
+<br>
+<br>
+<p>　赤点の周囲一つ飛ばしで参照することになるので、参照範囲だけで言えば、kernel size = 5と同じになる。つまり、計算量やパラメータの数を抑えつつ、広い範囲を参照することのできる仕組みがDilated Convolution。</p>
+<p>　次にCausal Convolution。
+これは一種のマスキングで、上のDilated Convの図を見ると分かりやすいが、Convは未来の情報も使って出力を計算する。
+これを回避するための構造。<br>
+　実装は、<a href="https://github.com/awslabs/gluon-ts/blob/42bee73409f801e7bca73245ca21cd877891437c/src/gluonts/mx/block/cnn.py#L25">GluonTSの実装</a>を見れば分かりやすい。</p>
+<p>　以上の2つを組み合わせたものがDilated Causal Convolution。</p>
+<div align="center">
+<img src="http://musyoku.github.io/images/post/2016-09-17/dilated_conv.gif">
+</div>
+<br>
+<br>
+<p>あとは、Weight Norm, Leaky ReLU, Residual構造を組み合わせて次の様なモジュールを作る。</p>
+<br>
+<div align="center">
+<img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/res.jpeg", width="400">
+</div>
+<br>
+<br>
+<p>ここで、$i$は$i$番目の層という意味。初期設定では10層。</p>
+<h2 id="実験結果">実験結果</h2>
+<p>　NVIDIA Titan Xp × 1を使って実験。OptimizerはAdam。先に説明した損失関数を使ってEncoderを訓練する。</p>
+<p>　次に、訓練したEncoderを使って生成した特徴表現と対応するラベルを使って<code>sklearn.svm.SVC</code>を学習させ分類精度を観察する。
+SVMは Radial basis function kernelを使っている。分類性能は若干SVMの能力に頼っている可能性があることに注意。</p>
+<h3 id="分類">分類</h3>
+<p>分類タスクを解かせることで以下3点を確認する。</p>
+<ul>
+<li>既存の教師なし学習法よりも優れ、且つ最新の教師あり学習法に近い性能を発揮することを示す</li>
+<li>ラベル付が少ない場合においてDeep系の教師あり学習よりも高い性能を出すことを示す</li>
+<li>転移可能な表現を提供できることを示す</li>
+</ul>
+<p>まずデータセットを訓練・テストに分割、訓練セットを使って教師なしでエンコーダを訓練。<br>
+次にデータセットのラベルと生成した特徴を使ってRBFカーネルを使ったSVMを訓練。<br>
+テストセットの分類性能を評価する。</p>
+<p>　データセットは、UCR/UEAアーカイブを使った。それぞれは有名なベンチーマークなので興味があれば確認してほしい。</p>
+<p>　分類精度の表は論文の付録を参考にしてほしい。ここでは、一部を示す。</p>
+<br>
+<div align="center">
+<img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/table1.png", width="800">
+</div>
+<br>
+<p>　また、生成した特徴表現をt-SNEを使って可視化するとこんな感じになるそう。
+分離可能かどうかは完全にデータセットに依存するようだ。</p>
+<div align="center">
+<img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/fig5.png", width="800">
+</div>
+<br>
+<p>時系列の教師なし表現学習面白い。</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  				<p>
+  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://khirotaka.github.io/tags/machine-learning">Machine Learning</a></span><span class="tag"><a href="https://khirotaka.github.io/tags/deep-learning">Deep Learning</a></span>
+  				</p>
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://khirotaka.github.io">Hirotaka Kawashima</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://khirotaka.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false}]
+        });
+      });
+    </script>
+
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://khirotaka.github.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>
