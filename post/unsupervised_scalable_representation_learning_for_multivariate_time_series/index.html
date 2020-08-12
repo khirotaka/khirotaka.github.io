@@ -69,7 +69,7 @@ Triplet Lossとは $$ \mathcal{L}(A, P, N) = \max\Bigl( ||f(A) - f(P)||^2 - ||f(
 　この論文のTriplet lossはword2vecを参考にしている。Word2Vecの一種にCBOWモデルというものがある。CBOWモデルで使われる手法にNegative Sampling というのがある。">
 <meta itemprop="datePublished" content="2020-08-05T23:32:44&#43;09:00" />
 <meta itemprop="dateModified" content="2020-08-05T23:32:44&#43;09:00" />
-<meta itemprop="wordCount" content="209">
+<meta itemprop="wordCount" content="220">
 <meta itemprop="image" content="https://khirotaka.github.io/images/me/ogp.jpg"/>
 
 
@@ -308,8 +308,9 @@ $$</p>
 　実装は、<a href="https://github.com/awslabs/gluon-ts/blob/42bee73409f801e7bca73245ca21cd877891437c/src/gluonts/mx/block/cnn.py#L25">GluonTSの実装</a>を見れば分かりやすい。</p>
 <p>　以上の2つを組み合わせたものがDilated Causal Convolution。</p>
 <div align="center">
-<img src="http://musyoku.github.io/images/post/2016-09-17/dilated_conv.gif">
+<img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/dilated_conv.gif">
 </div>
+<p>Reference: <a href="http://musyoku.github.io/2016/09/18/wavenet-a-generative-model-for-raw-audio/">WaveNet - A Generative Model for Raw Audio [arXiv:1609.03499], ご注文は機械学習ですか？</a></p>
 <br>
 <br>
 <p>あとは、Weight Norm, Leaky ReLU, Residual構造を組み合わせて次の様なモジュールを作る。</p>
