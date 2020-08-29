@@ -69,7 +69,7 @@ Triplet Lossとは $$ \mathcal{L}(A, P, N) = \max\Bigl( ||f(A) - f(P)||^2 - ||f(
 　この論文のTriplet lossはword2vecを参考にしている。Word2Vecの一種にCBOWモデルというものがある。CBOWモデルで使われる手法にNegative Sampling というのがある。">
 <meta itemprop="datePublished" content="2020-08-05T23:32:44&#43;09:00" />
 <meta itemprop="dateModified" content="2020-08-05T23:32:44&#43;09:00" />
-<meta itemprop="wordCount" content="220">
+<meta itemprop="wordCount" content="222">
 <meta itemprop="image" content="https://khirotaka.github.io/images/me/ogp.jpg"/>
 
 
@@ -227,28 +227,28 @@ $$</p>
 <p>「you say goodbye」という文があったとして、sayをターゲット、周りのyou と goodbyeをコンテキストと呼ぶことにして、「you ???? goodbye」で???にsayがくる確率を最大にすることを考える。この時、正例(say)をターゲットにした場合の損失と一緒にn個の負例(say以外の単語)が来たときの損失も一緒に算出し足し合わせ最終的な損失とする</p>
 </blockquote>
 <p>　この仕組みを時系列にも取り入れたい。</p>
-<p>　ここで、Fig 1のイラストの様に、入力系列$y_i$のランダムな部分系列$\mathcal{x}^{ref}$を考える。$\mathcal{x}^{ref}$の表現は、自身の部分系列$x^{pos}$に近い物にならなければならない(Positiveな例)。一方で、ランダムに選択された別の時系列$x^{neg}$を考える。これは、<strong>時系列が十分に長く且つ定常でないなら同じ時系列から採ってもいい</strong>し、<strong>複数の時系列が利用可能ならランダムに選択して$\mathcal{y}_j$部分時系列に切り取る</strong>。</p>
+<p>　ここで、Fig 1のイラストの様に、入力系列$\bm{y}_i$のランダムな部分系列$\bm{x}^{ref}$を考える。$\bm{x}^{ref}$の表現は、自身の部分系列$\bm{x}^{pos}$に近い物にならなければならない(Positiveな例)。一方で、ランダムに選択された別の時系列$\bm{x}^{neg}$を考える。これは、<strong>時系列が十分に長く且つ定常でないなら同じ時系列から採ってもいい</strong>し、<strong>複数の時系列が利用可能ならランダムに選択して$\bm{y}_j$部分時系列に切り取る</strong>。</p>
 <div align="center">
 <img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/fig1.png" width="500">
 </div>
-<p>　word2vecの考え方(というかnegative samplingの考え方)にのっとると、$x^{pos}$はword(もしくはターゲット)、$x^{ref}$はコンテキスト、$x^{neg}$はランダムワード(負例)となる。</p>
+<p>　word2vecの考え方(というかnegative samplingの考え方)にのっとると、$\bm{x}^{pos}$はword(もしくはターゲット)、$\bm{x}^{ref}$はコンテキスト、$\bm{x}^{neg}$はランダムワード(負例)となる。</p>
 <p>　これの損失関数は、</p>
 <p>$$
-\mathcal{L}(x^{ref}, x^{pos}, x^{neg}) = -\log\Bigl(\sigma\bigl(f(\mathcal{x}^{ref}, \mathcal{\theta}) ^\mathrm{T} f(\mathcal{x}^{pos}, \mathcal{\theta})\bigr)\Bigr) - \sum^K_{k=1}\log\Bigl(\sigma\bigl(-f(\mathcal{x}^{ref}, \mathcal{\theta}) ^\mathrm{T}f(\mathcal{x}_k^{neg}, \mathcal{\theta})\bigr)\Bigl)
+Loss = -\log\Bigl(\sigma\bigl(f(\bm{x}^{ref}, \bm{\theta}) ^\mathrm{T} f(\bm{x}^{pos}, \bm{\theta})\bigr)\Bigr) - \sum^K_{k=1}\log\Bigl(\sigma\bigl(-f(\bm{x}^{ref}, \bm{\theta}) ^\mathrm{T}f(\bm{x}_k^{neg}, \bm{\theta})\bigr)\Bigl)
 $$</p>
-<p>　ここで$\sigma$はsigmoid関数。</p>
+<p>　ここで$\sigma$はsigmoid関数。 $f(\cdot)$ はパラメータ $\bm{\theta}$ を持つニューラルネット</p>
 <p>例えば、</p>
 <div>
 $$
-x^{ref} = \begin{bmatrix}
+\bm{x}^{ref} = \begin{bmatrix}
             3.0 \\
             2.0
           \end{bmatrix},
-x^{pos} = \begin{bmatrix}
+\bm{x}^{pos} = \begin{bmatrix}
             2.5 \\
             1.8
           \end{bmatrix},
-x^{neg} = \begin{bmatrix}
+\bm{x}^{neg} = \begin{bmatrix}
             -3.0 \\
             -2.0 
           \end{bmatrix}
@@ -259,8 +259,8 @@ $$
 <p>$$
 -\log(\sigma(11.1)) - \log(\sigma(-13.0)) \fallingdotseq 0.0
 $$</p>
-<p>となるわけだ。つまり、この関数で計算される損失を0になる様にネットワークを訓練すれば、$x^{ref}$ と $x^{pos}$ は近い表現に、$x^{ref}$ と $x^{neg}$ は明らかに遠い表現を生成できる様になるわけだ。よく出来ている。</p>
-<p>　訓練の手順は、以下のAlgorithm 1を用いてランダムに選択したタプル$(x^{ref}, x^{pos}, (x_{k}^{neg})_k)$を用意、
+<p>となるわけだ。つまり、この関数で計算される損失を0になる様にネットワークを訓練すれば、$\bm{x}^{ref}$ と $\bm{x}^{pos}$ は近い表現に、$\bm{x}^{ref}$ と $\bm{x}^{neg}$ は明らかに遠い表現を生成できる様になるわけだ。よく出来ている。</p>
+<p>　訓練の手順は、以下のAlgorithm 1を用いてランダムに選択したタプル$(\bm{x}^{ref}, \bm{x}^{pos}, (\bm{x}_{k}^{neg})_k)$を用意、
 任意のエンコーダを用いて各ペアに対応する表現を生成、上記の式を用いて算出した損失を最小にする。</p>
 <div align="center">
 <img src="https://khirotaka.github.io/images/asset/nips_2019_unsupervised/algorithm_1.jpg", title="Algorithm 1">
