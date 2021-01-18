@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/Users/Kawashima_Hirotaka/Documents/Programming/GitHubPages/workspace",
+	"sourceRoot": "/Users/khirotaka/Documents/Programming/GitHubPages/workspace",
 	"sources": [
 		"themes/hello-friend-ng/assets/scss/main.scss",
 		"themes/hello-friend-ng/assets/scss/_normalize.scss",

@@ -6,11 +6,7 @@
     <description>Recent content in Paper Reading on Hirotaka Kawashima</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 05 Aug 2020 23:32:44 +0900</lastBuildDate>
-    
-	<atom:link href="https://khirotaka.github.io/categories/paper-reading/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 05 Aug 2020 23:32:44 +0900</lastBuildDate><atom:link href="https://khirotaka.github.io/categories/paper-reading/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Paper Reading] Unsupervised Scalable Representation Learning for Multivariate Time Series</title>
       <link>https://khirotaka.github.io/post/unsupervised_scalable_representation_learning_for_multivariate_time_series/</link>
