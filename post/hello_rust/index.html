@@ -60,8 +60,8 @@ CLionのインストールとIntelliJ Rustのインストール CLionはC/C&#43;
  この次に出てくるカスタマイズ画面(Featured plugins)でRustのプラグインを導入する。  これで準備完了。
 Rustプロジェクトの作成 　トップ画面の New Projectをクリック、下の画面になる。 OtherのところにあるRustを選択し、事前にインストールした~/.cargo/binを指定していることを確認し、 Location にプロジェクト名を指定してプロジェクトをCreateする。標準ライブラリがない場合は、Download via rustup でDLする。
 この設定画面は、cargo new PROJECT_NAME —bin をラップしているだけなので、Cargoの仕様(プロジェクト名に . を含めない等)に注意しないと、Cargo環境が整備されない事に注意  あとは、PyCharmと同じく右クリックしてRunすればいい  　これでCLion &#43; IntelliJ Rustを使ったRust開発環境が完成。次回はRustを使ってPython用のモジュールを書いていく。(いつになるか知らないけど)
- うまくJTBCに転がり込む事ができました(笑)"><meta itemprop="datePublished" content="2020-07-22T21:17:20&#43;09:00" />
-<meta itemprop="dateModified" content="2020-07-22T21:17:20&#43;09:00" />
+ うまくJTBCに転がり込む事ができました(笑)"><meta itemprop="datePublished" content="2020-07-22T21:17:20+09:00" />
+<meta itemprop="dateModified" content="2020-07-22T21:17:20+09:00" />
 <meta itemprop="wordCount" content="45"><meta itemprop="image" content="https://khirotaka.github.io/images/me/ogp.jpg"/>
 <meta itemprop="keywords" content="Rust,Programming," />
 <meta name="twitter:card" content="summary_large_image"/>
@@ -94,8 +94,8 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
  うまくJTBCに転がり込む事ができました(笑)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://khirotaka.github.io/post/hello_rust/" /><meta property="og:image" content="https://khirotaka.github.io/images/me/ogp.jpg"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-07-22T21:17:20&#43;09:00" />
-<meta property="article:modified_time" content="2020-07-22T21:17:20&#43;09:00" /><meta property="og:site_name" content="Hirotaka Kawashima" />
+<meta property="article:published_time" content="2020-07-22T21:17:20+09:00" />
+<meta property="article:modified_time" content="2020-07-22T21:17:20+09:00" /><meta property="og:site_name" content="Hirotaka Kawashima" />
 
 
 
@@ -190,33 +190,28 @@ Rustプロジェクトの作成 　トップ画面の New Projectをクリック
 <h2 id="clionのインストールとintellij-rustのインストール">CLionのインストールとIntelliJ Rustのインストール</h2>
 <p>CLionはC/C++用のIDEで最新の2020.1とかだと、CUDAをサポートし始めている界隈だと有名なIDEの１つ。
 インストールは簡単で、<a href="https://www.jetbrains.com/ja-jp/toolbox-app/">JetBrains Toolbox</a>がインストール済みならボタンひとつで完了する。</p>
-<p><figure class="center">
-    <img src="https://khirotaka.github.io/images/asset/hello_rust/jbtoolbox.png" width="552" height="812"/> <figcaption>
+<p><figure class="center"><img src="https://khirotaka.github.io/images/asset/hello_rust/jbtoolbox.png" width="552" height="812"/><figcaption>
             <h4>JetBrains Toolboxを使ってCLionをインストールする</h4>
         </figcaption>
 </figure>
 
 インストールが完了すると、初回起動時に設定をインポートするかどうか聞かれるが、その際は適宜設定すること。</p>
-<figure class="center">
-    <img src="https://khirotaka.github.io/images/asset/hello_rust/first_boot.png" width="534" height="271"/> 
+<figure class="center"><img src="https://khirotaka.github.io/images/asset/hello_rust/first_boot.png" width="534" height="271"/>
 </figure>
 
 <p>この次に出てくるカスタマイズ画面(Featured plugins)でRustのプラグインを導入する。
-<figure class="center">
-    <img src="https://khirotaka.github.io/images/asset/hello_rust/install_plugin.png" width="500" height="400"/> 
+<figure class="center"><img src="https://khirotaka.github.io/images/asset/hello_rust/install_plugin.png" width="500" height="400"/>
 </figure>
 </p>
 <p>これで準備完了。</p>
 <h2 id="rustプロジェクトの作成">Rustプロジェクトの作成</h2>
 <p>　トップ画面の <strong>New Project</strong>をクリック、下の画面になる。 <strong>Other</strong>のところにあるRustを選択し、事前にインストールした<code>~/.cargo/bin</code>を指定していることを確認し、 <code>Location</code> にプロジェクト名を指定してプロジェクトを<code>Create</code>する。標準ライブラリがない場合は、<code>Download via rustup</code> でDLする。<br>
 　この設定画面は、cargo new PROJECT_NAME —bin をラップしているだけなので、Cargoの仕様(プロジェクト名に . を含めない等)に注意しないと、Cargo環境が整備されない事に注意
-<figure class="center">
-    <img src="https://khirotaka.github.io/images/asset/hello_rust/new_project.png" width="500" height="400"/> 
+<figure class="center"><img src="https://khirotaka.github.io/images/asset/hello_rust/new_project.png" width="500" height="400"/>
 </figure>
 </p>
 <p>あとは、PyCharmと同じく右クリックしてRunすればいい
-<figure class="center">
-    <img src="https://khirotaka.github.io/images/asset/hello_rust/hello_world_from_clion.png" width="620" height="380"/> 
+<figure class="center"><img src="https://khirotaka.github.io/images/asset/hello_rust/hello_world_from_clion.png" width="620" height="380"/>
 </figure>
 </p>
 <p>　これでCLion + IntelliJ Rustを使ったRust開発環境が完成。次回はRustを使ってPython用のモジュールを書いていく。(いつになるか知らないけど)</p>

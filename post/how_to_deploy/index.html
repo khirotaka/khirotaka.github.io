@@ -60,8 +60,8 @@ hugo server こうすれば、先に用意した記事をちゃんとサイト�
 ただし、 draft: true にしている記事は生成されないので、 これも生成したい場合は、
 hugo server -D とする。
 Deplying 次のshellスクリプトをリポジトリルートに用意する。 後は実行権限を与えて動かせば、OK
-#!/bin/bash hugo cp -r public/* ../XXXXXX.github.io "><meta itemprop="datePublished" content="2020-06-16T00:03:27&#43;09:00" />
-<meta itemprop="dateModified" content="2020-06-16T00:03:27&#43;09:00" />
+#!/bin/bash hugo cp -r public/* ../XXXXXX.github.io "><meta itemprop="datePublished" content="2020-06-16T00:03:27+09:00" />
+<meta itemprop="dateModified" content="2020-06-16T00:03:27+09:00" />
 <meta itemprop="wordCount" content="43"><meta itemprop="image" content="https://khirotaka.github.io/images/me/ogp.jpg"/>
 <meta itemprop="keywords" content="Hugo,Usage," />
 <meta name="twitter:card" content="summary_large_image"/>
@@ -94,8 +94,8 @@ Deplying 次のshellスクリプトをリポジトリルートに用意する。
 #!/bin/bash hugo cp -r public/* ../XXXXXX.github.io " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://khirotaka.github.io/post/how_to_deploy/" /><meta property="og:image" content="https://khirotaka.github.io/images/me/ogp.jpg"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-06-16T00:03:27&#43;09:00" />
-<meta property="article:modified_time" content="2020-06-16T00:03:27&#43;09:00" /><meta property="og:site_name" content="Hirotaka Kawashima" />
+<meta property="article:published_time" content="2020-06-16T00:03:27+09:00" />
+<meta property="article:modified_time" content="2020-06-16T00:03:27+09:00" /><meta property="og:site_name" content="Hirotaka Kawashima" />
 
 
 
@@ -184,21 +184,21 @@ Hugoのテーマ設定だとかは検索すると無限に出てくる既存の�
 「記事の作成方法」と、「確認」、「デプロイ」の手順をメモっておく。</p>
 <h3 id="generate-an-empty-blog-post">Generate an empty blog post</h3>
 <p>まず記事を作るためには原稿用紙が必要になるように、記事を書くにもコマンドを叩く必要がある。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo new posts/~~~~~.md
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo new posts/~~~~~.md
 </code></pre></div><p>このようにすれば、<code>content/</code>ディレクトリ直下の <code>post/</code> ディレクトリ内に <code>~~~~~.md</code> ファイルが生成される。
 あとは、普通にMarkdownを書けばいい。</p>
 <h3 id="validation">Validation</h3>
 <p>ローカルマシン上で試しにWebサイトを建てるには、以下のようにする。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo server
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo server
 </code></pre></div><p>こうすれば、先に用意した記事をちゃんとサイトの形にしてくれる。<br>
 ただし、 <code>draft: true</code> にしている記事は生成されないので、
 これも生成したい場合は、</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo server -D
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">hugo server -D
 </code></pre></div><p>とする。</p>
 <h3 id="deplying">Deplying</h3>
 <p>次のshellスクリプトをリポジトリルートに用意する。
 後は実行権限を与えて動かせば、OK</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#!/bin/bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#!/bin/bash
 </span><span style="color:#75715e"></span>hugo
 cp -r public/* ../XXXXXX.github.io
 </code></pre></div>
